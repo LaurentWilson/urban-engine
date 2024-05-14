@@ -1,0 +1,42 @@
+% !TeX root = ../main.tex
+
+\custsetup{
+  keywords = {
+    软件定义网络\ \ 分布式拒绝服务攻击\ \ Rényi熵\ \ 深度神经网络
+  },
+  keywords* = {
+    SDN;DDoS;Rényi entropy;DNN
+  },
+}
+
+\begin{abstract}
+  软件定义网络（Software Defined Networking,SDN）因其独特的解耦、抽象和可编程特性，彻底颠覆了传统的网络理念，成为一条研究网络架构的新道路。通过将控制功能与转发功能分离，SDN 实现了网络的集中管理。这种新颖的架构不仅提高了网络配置的灵活性和集中管控能力，还增强了其对虚拟化和云计算等新兴技术的适应能力，显著提升了网络对业务和服务的支撑能力。然而，随着 SDN 技术的迅速发展，其面临的安全问题也越来越严重，其中分布式拒绝服务（Distributed Denial of Service,DDoS）攻击尤为突出。
+
+ DDoS 攻击因其低成本和高破坏力而成为常见的网络攻击方式。攻击者通过操控大量僵尸主机同时向目标发起攻击，从而迅速消耗目标主机的计算资源和带宽。在 SDN 环境中，当大量 DDoS 攻击流量无法命中流表项时，OpenFlow 交换机会生成大量 \textit{Packet in} 消息发送至 SDN 控制器。这种情况会严重占用控制器的带宽和计算资源，甚至可能导致控制器的单点失效，进而使 SDN 网络的安全性面临巨大威胁。
+
+ 为了应对这些挑战，利用 SDN 的集中管控和可编程特性来检测和防御 DDoS 攻击成为研究热点。相较于传统 IP 网络，SDN 在检测异常流量方面具有显著优势。基于 SDN 网络这一特征，本文对应对 DDoS 攻击的检测算法进行深入研究，具体工作和创新点如下：
+
+ \begin{enumerate}
+     \item 引入 Rényi 熵这种特殊的信息熵对网络流量进行异常初检。对于混乱的分布相比于香农熵更能体现熵值的差异，有利于阈值的设定。
+     \item 创新性地提出一种基于 Rényi 熵与深度神经网络（Deep Neural Network,DNN）的 DDoS 检测模型。该模型包括基于 Rényi 熵的异常初检模块和基于 DNN 检测模块，先利用 Rényi 熵对网络中的流量进行异常初检，再将经过滤后产生的疑似异常流量输入到 DNN 检测模块中进行进一步检测。此方案不仅祢补了基于信息熵的检测算法识别率低、误报率高的缺陷，也缩短了基于 DNN 算法的检测时间，节省了 DNN 算法的资源占用率。
+     \item 根据 OpenFlow 协议字段和手工提取构造出了19维特征向量，作 DNN 模型的输人，
+     经过训练与测试，该模型检测 DDoS 流量的准确率高于传统机器学习方法，并具有更低的误报率和系统开销。
+ \end{enumerate}
+
+\end{abstract}
+
+\begin{abstract*}
+
+  Software Defined Networking (SDN), with its unique features of decoupling, abstraction, and programmability, has revolutionized traditional networking concepts and opened a new avenue for researching network architectures. By separating control functions from forwarding functions, SDN enables centralized network management. This novel architecture not only enhances the flexibility and centralized control of network configurations but also improves its adaptability to emerging technologies such as virtualization and cloud computing, significantly boosting the network's ability to support business and service needs. However, as SDN technology rapidly evolves, it faces increasing security challenges, with Distributed Denial of Service (DDoS) attacks being particularly prominent.
+
+ DDoS attacks have become a common form of network attack due to their low cost and high destructiveness. Attackers manipulate a large number of zombie hosts to simultaneously launch attacks on a target, quickly depleting the target's computational resources and bandwidth. In an SDN environment, when a large volume of DDoS attack traffic fails to match flow table entries, OpenFlow switches generate a substantial number of \textit{Packet in} messages sent to the SDN controller. This situation can severely consume the controller's bandwidth and computational resources, potentially leading to the controller's single point of failure, thereby posing a significant threat to the security of the SDN network.
+
+ To address these challenges, leveraging SDN's centralized control and programmability to detect and defend against DDoS attacks has become a research hotspot. Compared to traditional IP networks, SDN has significant advantages in detecting abnormal traffic. Based on this feature of SDN networks, this paper conducts an in-depth study of detection algorithms for DDoS attacks, with specific contributions and innovations as follows:
+
+ \begin{enumerate}
+     \item Introduced Rényi entropy, a special type of information entropy, for preliminary anomaly detection of network traffic. Compared to Shannon entropy, Rényi entropy better reflects the differences in entropy values for chaotic distributions, facilitating threshold setting.
+     \item Proposed an innovative DDoS detection model based on Rényi entropy and Deep Neural Networks (DNN). This model includes a preliminary anomaly detection module based on Rényi entropy and a detection module based on DNN. Initially, Rényi entropy is used to conduct a preliminary anomaly detection of the network traffic, and then the filtered suspected abnormal traffic is input into the DNN detection module for further analysis. This approach not only mitigates the shortcomings of entropy-based detection algorithms, such as low recognition rates and high false positive rates, but also reduces the detection time and resource consumption of DNN algorithms.
+     \item Constructed a 19-dimensional feature vector based on OpenFlow protocol fields and manual extraction to serve as the input for the DNN model. After training and testing, this model demonstrated higher accuracy in detecting DDoS traffic compared to traditional machine learning methods, with lower false positive rates and system overhead.
+ \end{enumerate}
+
+  \end{abstract*}
